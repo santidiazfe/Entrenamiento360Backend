@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 const {verifyToken, TOKEN_SECRET} = require('../middlewares/jwt');
 const router = express.Router();
-// const app = express()
 
 
 // app.use(bodyParser.urlencoded({extended:true}));
@@ -18,7 +17,7 @@ router.post('/login', async (req, res) => {
     await knex
     .select('*')
     .from('usuario')
-    .where('user.nombre', req.body.nombre)
+    .where('user.nombre', req.body.name)
     .then((user) => {
         return user;
     })
@@ -45,7 +44,7 @@ router.post('/login', async (req, res) => {
 router.post('/register', (req, res) => {
     const password = req.body.password;
     const newUser = {
-        name: req.body.nombre,
+        name: req.body.name,
         password //linea 52 se hace el hash
     }
     usuarios.push(newUser);
@@ -56,7 +55,7 @@ router.post('/', async (req, res) => {
     const salt =  bcrypt.genSaltSync(10);
     const password =  bcrypt.hashSync(req.body.password, salt);
     const newUser = {
-        name: req.body.nombre,
+        name: req.body.name,
         password: password
     } 
     console.log(newUser, 'newUser')
