@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const authRouter = require('./routes/auth');
+const authRouter = require('./routes/auth')
 const app = express();
 
 app.use(cors());
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use('/register', authRouter);
 
 app.get('/', (req, res) => {
-    res.send('servidor funcionando')
+    res.send('servidor 360 funcionando')
 });
 
 app.listen(process.env.PORT || 4000, () => {
