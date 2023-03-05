@@ -2,18 +2,21 @@ const express = require('express');
 const configDB = require('../knexfile');
 const knex = require('knex')(configDB.development);
 const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const { verifyToken, TOKEN_SECRET } = require('../middlewares/jwt');
 const router = express.Router();
 
-router.post('/login', async (req, res) => {
+router.get('/', (req, res) => {
+  res.send('register 360 funcionando')
+});
+
+router.post('/', async (req, res) => {
   console.log(req.body, 'req.body');
   try {
     const user = await knex
       .select('*')
       .from('usuario')
-      .where('usuario.nombre', req.body.name)
+      .where('usuario.nombre', req.body.nombre)
       .then((user) => {
         console.log(user, 'user');
         return user;
