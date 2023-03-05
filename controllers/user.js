@@ -7,7 +7,7 @@ const getAllUsers = () => {
     return knex
     .column('cedula', 'nombre', 'password')
     .select()
-    .from('usario')
+    .from('usuario')
 }
 const getUsersById = (id) => {
     return knex('usuario')

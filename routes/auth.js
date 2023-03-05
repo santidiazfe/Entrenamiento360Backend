@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const { verifyToken, TOKEN_SECRET } = require('../middlewares/jwt');
 const router = express.Router();
 
-
 router.post('/login', async (req, res) => {
   console.log(req.body, 'req.body');
   try {
@@ -41,22 +40,6 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.log("Error en login");
     res.status(500).json({ error: "Error en el servidor", success: false });
-  }
-});
-
-router.post('/register', async (req, res) => {
-  try {
-    const salt = bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync(req.body.password, salt);
-    const newUser = {
-      name: req.body.name,
-      password: password
-    }
-    await knex('usuario').insert(newUser);
-    res.status(200).json({ success: true, newUser });
-  } catch (error) {
-    console.error(error);
-    res.status(400).send("Error al registrar usuario");
   }
 });
 
