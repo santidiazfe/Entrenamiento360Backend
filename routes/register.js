@@ -18,7 +18,8 @@ router.post('/', async (req, res) => {
       nombre: req.body.nombre,
       password: password,
       email: req.body.email,
-      celular: req.body.celular
+      celular: req.body.celular,
+      rol_id: req.body.rol_id
     };
     await knex('usuario').insert(newUser);
     res.status(200).json({ success: true, newUser });

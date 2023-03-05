@@ -18,11 +18,9 @@ router.post('/', async (req, res) => {
       .from('usuario')
       .where('usuario.nombre', req.body.nombre)
       .then((user) => {
-        console.log(user, 'user');
         return user;
       })
       .catch((error) => {
-        console.log("Error en la consulta a la base de datos", error);
         res.status(500).json({ error: "Error en la consulta a la base de datos", success: false });
         return;
       });
@@ -41,7 +39,6 @@ router.post('/', async (req, res) => {
     }, TOKEN_SECRET);
     res.json({ error: null, data: 'Login exitoso', token, success: true });
   } catch (error) {
-    console.log("Error en login");
     res.status(500).json({ error: "Error en el servidor", success: false });
   }
 });
