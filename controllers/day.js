@@ -9,6 +9,15 @@ const getAllDays = () => {
     .select()
     .from('dia')
 }
+
+const getDayOfWeek = async (date) => {
+  const dayOfWeek = await knex('dias')
+    .select('dia')
+    .where('id', knex.raw('DATEPART(dw, CAST(? AS DATE))', [date]))
+    .first();
+  return dayOfWeek.dia;
+};
+
 const getDayById = (id) => {
     return knex('dia')
     .where('id', id)
@@ -33,5 +42,6 @@ module.exports = {
     updateDay,
     createDay,
     getAllDays,
-    getDayById
+    getDayById,
+    getDayOfWeek
 }
