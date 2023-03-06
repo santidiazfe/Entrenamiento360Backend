@@ -6,9 +6,6 @@ const jwt = require('jsonwebtoken');
 const { verifyToken, TOKEN_SECRET } = require('../middlewares/jwt');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('register 360 funcionando')
-});
 
 router.post('/', async (req, res) => {
   console.log(req.body, 'req.body');
