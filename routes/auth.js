@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     const user = await knex
       .select('*')
       .from('usuario')
-      .where('usuario.nombre', req.body.nombre)
+      .where('usuario.cedula', req.body.cedula)
       .then((user) => {
         return user;
       })

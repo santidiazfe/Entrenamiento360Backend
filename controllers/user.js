@@ -5,7 +5,7 @@ const knex = require('knex')(configDB.development);
 
 const getAllUsers = () => {
     return knex
-    .column('cedula', 'nombre', 'password')
+    .column('cedula', 'nombre')
     .select()
     .from('usuario')
 }

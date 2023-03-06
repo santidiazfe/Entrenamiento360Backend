@@ -5,9 +5,6 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-    res.send('register 360 funcionando')
-});
 
 router.post('/', async (req, res) => {
     try {
@@ -15,10 +12,8 @@ router.post('/', async (req, res) => {
       const password = bcrypt.hashSync(req.body.password, salt);
       const newUser = {
         cedula: req.body.cedula,
-        nombre: req.body.nombre,
         password: password,
         email: req.body.email,
-        celular: req.body.celular,
         rol_id: req.body.rol_id
       };
       await knex('usuario').insert(newUser);

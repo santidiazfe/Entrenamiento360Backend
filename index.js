@@ -6,6 +6,7 @@ const dayRouter = require('./routes/day');
 const hourRouter = require('./routes/horario');
 const rolRouter = require('./routes/roles');
 const registerRouter = require('./routes/register');
+const bookingRouter = require('./routes/booking')
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/day', dayRouter);
 app.use('/horario', hourRouter)
 app.use('/rol', rolRouter)
 app.use('/register', registerRouter)
+app.use('/reservas', bookingRouter) 
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
