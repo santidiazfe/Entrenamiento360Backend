@@ -26,6 +26,29 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/day/:dia', async (req, res) => {
+  const day = req.params.dia;
+  try {
+    const bookings = await bookingQueries.getBookingByDay(day);
+    res.json(bookings);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al obtener las reservas por día.' });
+  }
+});
+
+router.get('/hora/:hora', async (req, res) => {
+  const hora = req.params.hora;
+  try {
+    const bookings = await bookingQueries.getBookingByHour(hora);
+    res.json(bookings);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error al obtener las reservas por hora.' });
+  }
+});
+
+
 router.get('/usuario/:id', async (req, res) => {
   const id = req.params.id;
   try {
@@ -48,16 +71,6 @@ router.get('/hour/:id', async (req, res) => {
   }
 });
 
-router.get('/day/:id', async (req, res) => {
-  const id = req.params.id;
-  try {
-    const bookings = await bookingQueries.getBookingByDay(id);
-    res.json(bookings);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Error al obtener las reservas por día.' });
-  }
-});
 
 router.post('/', async (req, res) => {
     const body = req.body;
