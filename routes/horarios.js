@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const dayQueries = require('../controllers/day')
+const horarioQueries = require('../controllers/horarios')
 
 router.get('/', async (req, res) => {
-    const days = await dayQueries.getAllDays();
-    res.json(days)
+    const hours = await horarioQueries.getAllHours();
+    res.json(hours)
    
 })
 
 router.post('/' , async (req, res) => {
     const body = req.body
-    const newDay = await dayQueries.createDay(body);
-    res.json(newDay)
+    const newHour = await horarioQueries.createHour(body);
+    res.json(newHour)
     
 })
 
 router.get('/:id' , async (req, res) => {
     const id = req.params.id
-    await dayQueries.getDayById(id)
-    .then((day)=>{
-       return res.json(day) 
+    await horarioQueries.getHourById(id)
+    .then((hour)=>{
+       return res.json(hour) 
     })
     .catch((er) =>{
         return res.json (er)
@@ -30,15 +30,15 @@ router.get('/:id' , async (req, res) => {
 router.put('/:id' , async (req, res) => {
     const id = req.params.id
     const body = req.body
-    const updateDay = await dayQueries.updateDay(id, body);
-    res.json(updateDay)
+    const updateHour = await horarioQueries.updateHour(id, body);
+    res.json(updateHour)
    
 })
 
 router.delete('/:id' ,async (req, res) => {
     const id = req.params.id
-    const deleteDay = await dayQueries.deleteDay(id);
-    res.json(deleteDay)
+    const deleteHour = await horarioQueries.deleteHour(id);
+    res.json(deleteHour)
     
 })
 
